@@ -87,6 +87,11 @@ spa.shell = (function (){
     };
 
     onClickChat = function (event) {
+        if (toggleChat(stateMap.is_chat_retracted)){
+            $.uriAnchor.setAnchor({
+                chat: (stateMap.is_chat_retracted ? 'open' : 'closed')
+            });
+        }
       toggleChat(stateMap.is_chat_retracted);
         return false;
     };

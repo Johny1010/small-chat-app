@@ -28,13 +28,16 @@ spa.shell = (function (){
            chat_extend_time: 1000,
            chat_retract_time: 300,
            chat_extend_height: 450,
-           chat_retract_height: 15
+           chat_retract_height: 15,
+           chat_extend_title: 'Click to hide',
+           chat_retract_title: 'Click to show'
        },
        stateMap = {
-           $container : null
+           $container: null,
+           is_chat_retracted: true
        },
        jqueryMap = {},
-       setJqueryMap, toggleChat, initModule;
+       setJqueryMap, toggleChat, onClickChat, initModule;
 
     setJqueryMap = function () {
       var $container = stateMap.$container;
@@ -60,10 +63,12 @@ spa.shell = (function (){
                 },
                 configMap.chat_extend_time,
                 function () {
-                  if (callback) {
-                      callback(jqueryMap.$chat);
+                  jqueryMap.$chat.attr('title', configMap.chat_extend_title);
+                    stateMap.is_chat_retracted = false;
+                    if (callback) {
+                        callback (jqueryMap.$chat);
+                    }
                 }
-            }
             );
             return true;
         }
@@ -81,18 +86,20 @@ spa.shell = (function (){
         return true;
     };
 
+    onClickChat = function (event) {
+      toggleChat(stateMap.is_chat_retracted);
+        return false;
+    };
+
     initModule = function ($container) {
       stateMap.$container = $container;
         $container.html(configMap.main_html);
         setJqueryMap();
 
-        setTimeout(function () {
-          toggleChat(true);
-        }, 3000);
-        setTimeout(function () {
-          toggleChat(false);
-        }, 8000);
-
+        stateMap.is_chat_retracted = true;
+        jqueryMap.$chat
+            .attr('title', configMap.chat_extend_title)
+            .click(onClickChat);
     };
 
     return {

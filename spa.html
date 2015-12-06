@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aplikacje SPA. Rozdzial 1 punkt 1.2.2</title>
+    <style type="text/css">
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #777;
+        }
+        #spa {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            bottom: 8px;
+            right: 8px;
+            border-radius: 8px 8px 0 8px;
+            background-color: #fff;
+        }
+        .spa-slider {
+            position: absolute;
+            bottom: 0;
+            right: 2px;
+            width: 300px;
+            height: 16px;
+            cursor: pointer;
+            border-radius: 8px 0 0 0;
+            background-color: #f00;
+        }
+
+    </style>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+    </script>
+    <!--Ustawienia jslint-->
+    <script type="text/javascript">
+        /*jslint browser : true, continue : true,
+        deval : true, indent : 2, maxerr: 50,
+        newcap : true, sloppy : true, vars : true,
+        white : true
+        */
+        /*global jQuery */
+    /*    Modul /spa/*/
+  //  zapewnia funkcjonalnosc suwaka
+    var spa = (function ($) {
+        //  zmienne zakresu modulu
+        // ustawienie stalych
+        var configMap = {
+            extended_height: 434,
+            extended_title: 'Kliknij, aby ukryc',
+            retracted_height: 16,
+            retracted_title: 'Kliknij, aby pokazac',
+            template_html: '<div class="spa-slider"></div>'
+        }, $chatSlider, toggleSlider, onClickSlider, initModule;
+        //  deklrowanie wszystkich pozostalych zmiennych zakresu modulu
+
+
+        //  Metoda DOM /toggleSLider/
+        //  zmienia wysokosc suwaka
+        toggleSlider = function () {
+            var slider_height = $chatSlider.height();
+
+            //ROzwijanie suwaka jesli jest calkowicie ukryty
+            if (slider_height === configMap.retracted_height) {
+                $chatSlider
+                        .animate({height: configMap.extended_height})
+                        .attr('tytuł', configMap.extended_title);
+                return true;
+            }
+            //zwijanie suwaka
+            else if (slider_height === configMap.extended_height) {
+                $chatSlider
+                        .animate({height: configMap.retracted_height})
+                        .attr('tytuł', configMap.extended_title);
+                return true;
+            }
+            return false;
+        };
+        // Prodera obslugi zdarzen /onClickSlider/
+        //  odbiera zdarzenie klikniecia i wywoluje metode toggleSlider
+        onClickSlider = function (event) {
+            toggleSlider();
+            return false;
+        };
+        //  Metoda publiczna /initModule/
+        //  ustawia stan poczatkowy i dostarcza funkcje
+        initModule = function ($container) {
+            //  renderowanie HTML
+            $container.html(configMap.template_html);
+            $chatSlider = $container.find('.spa-slider');
+            //   Inicjowanie wysokosci oraz tytulu suwaka
+            //   wiazanie zdarzenia klikniecia przez uzytkownika do procedury obslugi zdarzen
+            $chatSlider
+                    .attr('tytul', configMap.retracted_title)
+                    .click(onClickSlider());
+            return true;
+        };
+        return {initModule: initModule};
+    }(jQuery));
+
+        jQuery(document).ready(
+                function () {spa.initModule(jQuery('#spa'));}
+        );
+    </script>
+</head>
+<body>
+    <div id="spa">
+    </div>
+</body>
+
+
+</html>

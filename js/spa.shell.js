@@ -17,6 +17,7 @@ spa.shell = (function (){
                    closed: true
                }
            },
+           resize_interval: 200,
            main_html : String()
            + '<div class="spa-shell-head">'
            + '<div class="spa-shell-head-logo"></div>'
@@ -32,9 +33,11 @@ spa.shell = (function (){
        },
        stateMap = {
            anchor_map: {},
+           resize_idto: undefined
        },
        jqueryMap = {},
-       copyAnchorMap, setJqueryMap, toggleChat, changeAnchorPart, onHashchange, setChatAnchor, onClickChat, initModule;
+       copyAnchorMap, setJqueryMap, toggleChat, changeAnchorPart, onResize,
+       onHashchange, setChatAnchor, onClickChat, initModule;
 
     copyAnchorMap = function () {
       return $.extend(true, {}, stateMap.anchor_map);
@@ -123,6 +126,20 @@ spa.shell = (function (){
         return true;
     };
 
+    onResize = function () {
+        if (stateMap.resize_idto) {
+            return true;
+        }
+        spa.chat.handleResize();
+        stateMap.resize_idto = setTimeout(
+            function () {
+                stateMap.resize_idto = undefined;
+            },
+            configMap.resize_interval
+        );
+        return true;
+    };
+
     onHashchange = function (event) {
       var anchor_map_proposed,
           _s_chat_previous,
@@ -202,6 +219,7 @@ spa.shell = (function (){
         });
         spa.chat.initModule(jqueryMap.$container);
         $(window)
+            .bind('resize', onResize)
             .bind('hashchange', onHashchange)
             .trigger('hashchange');
     };

@@ -17,7 +17,7 @@ spa.chat = (function () {
             +'<div class="spa-chat-msgs"></div>'
             +'<div class="spa-chat-box">'
             +'<input type="text" />'
-            +'<div>Wyslij</div>'
+            +'<div>Send</div>'
             +'</div>'
             +'</div>'
             +'</div>',
@@ -26,7 +26,7 @@ spa.chat = (function () {
             slider_close_time: true,
             slider_opened_em: true,
             slider_closed_em: true,
-            slider_closed_title: true,
+            slider_opened_title: true,
             slider_closed_title: true,
 
             chat_model: true,
@@ -51,7 +51,7 @@ spa.chat = (function () {
             px_per_em: 0,
             slider_hidden_px: 0,
             slider_closed_px: 0,
-            slider_opened_px: 0,
+            slider_opened_px: 0
         },
         jqueryMap = {},
         setJqueryMap, getEmSize, setPxSizes, setSliderPosition, onClickToggle, configModule, initModule;

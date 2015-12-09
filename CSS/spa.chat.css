@@ -65,7 +65,19 @@
     right: 0;
 }
 
-.spa-chat-msg {
+.spa-chat-msgs {
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    right: 1em;
+    bottom: 4em;
+    padding: 0.5em;
+    border: thin solid #888;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.spa-chat-box {
     position: absolute;
     height: 2em;
     left: 1em;
@@ -75,7 +87,7 @@
     background: #888;
 }
 
-.spa-chat-bos input[type=text] {
+.spa-chat-box input[type=text] {
     float: left;
     width: 75%;
     height: 100%;

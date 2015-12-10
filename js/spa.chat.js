@@ -9,7 +9,7 @@ spa.chat = (function () {
             +'<div class="spa-chat-head">'
             +'<div class="spa-chat-head-toggle">+</div>'
             +'<div class="spa-chat-head-title">'
-            +'Czat'
+            +'Chat'
             +'</div>'
             +'</div>'
             +'<div class="spa-chat-closer">x</div>'

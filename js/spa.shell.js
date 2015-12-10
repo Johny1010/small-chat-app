@@ -23,7 +23,7 @@ spa.shell = (function (){
            + '<div class="spa-shell-head">'
            + '<div class="spa-shell-head-logo">'
            + '<h1>Chat App</h1>'
-           + '<p>Your chat app!</p>'
+           + '<p>Johny\'s chat app!</p>'
            + '</div>'
            + '<div class="spa-shell-head-acct"></div>'
            + '</div>'
@@ -39,7 +39,7 @@ spa.shell = (function (){
            resize_idto: undefined
        },
        jqueryMap = {},
-       copyAnchorMap, setJqueryMap, toggleChat, changeAnchorPart, onResize,
+       copyAnchorMap, setJqueryMap, toggleChat, anchor_map_previous, changeAnchorPart, onResize,
        onHashchange, setChatAnchor, onClickChat, initModule, onTapAcct, onLogin, onLogout;
 
     copyAnchorMap = function () {

@@ -87,7 +87,7 @@ spa.chat = (function () {
             $sizer: $slider.find('.spa-chat-sizer'),
             $list_box: $slider.find('.spa-chat-list-box'),
             $msg_log: $slider.find('.spa-chat-msg-log'),
-            $msg_in: $slider.find('.spa-chat-nsg-in'),
+            $msg_in: $slider.find('.spa-chat-msg-in'),
             $input: $slider.find('.spa-chat-msg-in input[type=text]'),
             $send: $slider.find('.spa-chat-msg-send'),
             $form: $slider.find('.spa-chat-msg-form'),
@@ -294,7 +294,7 @@ spa.chat = (function () {
             }
             list_html
                 += '<div class="spa-chat-list-name'
-                + select_class +'" data-id=' + person.id + '">'
+                + select_class +'" data-id="' + person.id + '">'
                 + spa.util_b.encodeHtml(person.name) + '</div>'
         });
         

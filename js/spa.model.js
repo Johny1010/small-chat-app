@@ -155,7 +155,7 @@ spa.model = (function (){
                     continue PERSON;
                 }
 
-                if (stateMap.user && stateMap.user.id === person_map.id) {
+                if (stateMap.user && stateMap.user.id === person_map._id) {
                     stateMap.user.css_map = person_map.css_map;
                     continue PERSON;
                 }

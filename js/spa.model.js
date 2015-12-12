@@ -148,7 +148,7 @@ spa.model = (function (){
             clearPeopleDb();
 
             PERSON:
-            for (i=0; i < people_list.length; i++) {
+            for (i = 0; i < people_list.length; i++) {
                 person_map = people_list[i];
 
                 if (!person_map.name) {
@@ -259,7 +259,10 @@ spa.model = (function (){
             else {
                 new_chatee = null;
             }
-            $.gevent.publish('spa-serchatee', {old_chatee: chatee, new_chatee: new_chatee});
+            $.gevent.publish('spa-setchatee', {
+                old_chatee: chatee,
+                new_chatee: new_chatee
+            });
             chatee = new_chatee;
             return true;
         };

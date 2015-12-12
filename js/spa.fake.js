@@ -18,7 +18,7 @@ spa.fake = (function () {
               css_map: {
                   top: 20,
                   left: 20,
-                  'background-color': 'rgb(128, 255, 128)'
+                  'background-color': 'rgb(128, 128, 128)'
               }
           },
           {
@@ -52,6 +52,7 @@ spa.fake = (function () {
 
     mockSio = (function () {
         var on_sio, emit_sio, emit_mock_msg, send_listchange, listchange_idto, callback_map = {};
+
         on_sio = function (msg_type, callback) {
             callback_map[msg_type] = callback;
         };
@@ -77,7 +78,7 @@ spa.fake = (function () {
                         dest_id: user.id,
                         dest_name: user.name,
                         sender_id: data.dest_id,
-                        msg_text: 'Thanks for your comments,' + user.name
+                        msg_text: 'Thanks for your msg, ' + user.name
                     }]);
                 }, 2000);
             }
@@ -94,7 +95,7 @@ spa.fake = (function () {
             }
 
             if (msg_type === 'updateavatar' && callback_map.listchange) {
-                for (i=0; i<peopleList.length; i++) {
+                for (i = 0; i < peopleList.length; i++) {
                     if (peopleList[i]._id === data.person_id) {
                         peopleList[i].css_map = data.css_map;
                         break;

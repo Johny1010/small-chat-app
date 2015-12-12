@@ -24,7 +24,7 @@ spa.chat = (function () {
                             + '<input type="text" />'
                             + '<input type="submit" style="display: none" />'
                             + '<div class="spa-chat-msg-send">'
-                                + 'Wyslij'
+                                + 'Send'
                             + '</div>'
                         + '</form>'
                     + '</div>'
@@ -67,14 +67,10 @@ spa.chat = (function () {
             slider_opened_px: 0
         },
         jqueryMap = {},
-        setJqueryMap, getEmSize, setPxSizes, scrollChat, writeChat, writeAlert, clearChat, 
-        setSliderPosition, onClickToggle, configModule, initModule, removeSlider,
+        setJqueryMap, setPxSizes, scrollChat, writeChat, writeAlert, clearChat,
+        setSliderPosition, configModule, initModule, removeSlider,
         onTapToggle, onSubmitMsg, onTapList, onSetchatee, onUpdatechat, onListchange, onLogin, onLogout,
         handleResize;
-
-    getEmSize = function (elem) {
-        return Number(getComputedStyle(elem,'').fontSize.match(/\d*\.?\d*/)[0]);
-    };
 
     setJqueryMap = function () {
         var $append_target = stateMap.$append_target,
@@ -99,7 +95,7 @@ spa.chat = (function () {
         var px_per_em, window_height_em, opened_height_em;
         px_per_em = spa.util_b.getEmSize(jqueryMap.$slider.get(0));
         window_height_em = Math.floor(
-            (jqueryMap.$window.height()/px_per_em) + 0.5
+            (jqueryMap.$window.height() / px_per_em) + 0.5
         );
 
         opened_height_em
@@ -131,15 +127,17 @@ spa.chat = (function () {
     setSliderPosition = function (position_type, callback) {
         var height_px, animate_time, slider_title, toggle_text;
         
-        if (position_type === 'opened' && configMap.people_model.get_user().get_is_anon()){
+        if (position_type === 'opened' && configMap.people_model.get_user().get_is_anon()) {
             return false;
         }
+
         if (stateMap.position_type === position_type){
             if (position_type === 'opened') {
                 jqueryMap.$input.focus();
             }
             return true;
         }
+
       switch (position_type) {
           case 'opened':
               height_px = stateMap.slider_opened_px;
@@ -225,9 +223,11 @@ spa.chat = (function () {
     
     onSubmitMsg = function (event) {
         var msg_text = jqueryMap.$input.val();
+
         if (msg_text.trim() === '') {
             return false;
         }
+
         configMap.chat_model.send_msg(msg_text);
         jqueryMap.$input.focus();
         jqueryMap.$send.addClass('spa-x-select');
@@ -257,7 +257,7 @@ spa.chat = (function () {
         jqueryMap.$input.focus();
         if (!new_chatee) {
             if (old_chatee) {
-                writeAlert(old_chatee.name + 'has left chat');
+                writeAlert(old_chatee.name + ' has left chat');
             }
             else {
                 writeAlert('Your friend has left chat');
@@ -267,7 +267,7 @@ spa.chat = (function () {
         }
         jqueryMap.$list_box
             .find('.spa-chat-list-name')
-            .removeClass('.spa-x-select')
+            .removeClass('spa-x-select')
             .end()
             .find('[data-id=' + arg_map.new_chatee.id + ']')
             .addClass('spa-x-select');
@@ -361,7 +361,6 @@ spa.chat = (function () {
         setPxSizes();
 
         jqueryMap.$toggle.prop('title', configMap.slider_closed_title);
-        jqueryMap.$head.click(onClickToggle);
         stateMap.position_type = 'closed';
 
         $list_box = jqueryMap.$list_box;

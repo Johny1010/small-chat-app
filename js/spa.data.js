@@ -4,7 +4,7 @@
 spa.data = (function () {
     'use strict';
     var stateMap = {
-        sio: null
+            sio: null
         },
         makeSio, getSio, initModule;
 
@@ -13,7 +13,7 @@ spa.data = (function () {
 
         return {
             emit: function (event_name, data) {
-                socket.emit (event_name, data);
+                socket.emit(event_name, data);
             },
             on: function (event_name, callback) {
                 socket.on(event_name, function () {

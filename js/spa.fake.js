@@ -12,43 +12,43 @@ spa.fake = (function () {
     };
 
     peopleList = [
-          {
-              name: 'Johny',
-              _id: 'id_01',
-              css_map: {
-                  top: 20,
-                  left: 20,
-                  'background-color': 'rgb(128, 128, 128)'
-              }
-          },
-          {
-              name: 'E',
-              _id: 'id_02',
-              css_map: {
-                  top: 60,
-                  left: 20,
-                  'background-color': 'rgb(128, 255, 128)'
-              }
-          },
-          {
-              name: 'Mision',
-              _id: 'id_03',
-              css_map: {
-                  top: 100,
-                  left: 20,
-                  'background-color': 'rgb(128, 192, 192)'
-              }
-          },
-          {
-              name: 'Tikri',
-              _id: 'id_04',
-              css_map: {
-                  top: 140,
-                  left: 20,
-                  'background-color': 'rgb(192, 128, 128)'
-              }
-          }
-      ];
+        {
+            name: 'Johny',
+            _id: 'id_01',
+            css_map: {
+                top: 20,
+                left: 20,
+                'background-color': 'rgb(128, 128, 128)'
+            }
+        },
+        {
+            name: 'E',
+            _id: 'id_02',
+            css_map: {
+                top: 60,
+                left: 20,
+                'background-color': 'rgb(128, 255, 128)'
+            }
+        },
+        {
+            name: 'Mision',
+            _id: 'id_03',
+            css_map: {
+                top: 100,
+                left: 20,
+                'background-color': 'rgb(128, 192, 192)'
+            }
+        },
+        {
+            name: 'Tikri',
+            _id: 'id_04',
+            css_map: {
+                top: 140,
+                left: 20,
+                'background-color': 'rgb(192, 128, 128)'
+            }
+        }
+    ];
 
     mockSio = (function () {
         var on_sio, emit_sio, emit_mock_msg, send_listchange, listchange_idto, callback_map = {};
@@ -123,7 +123,7 @@ spa.fake = (function () {
         };
 
         send_listchange = function () {
-            listchange_idto = setTimeout(function (){
+            listchange_idto = setTimeout (function (){
                 if (callback_map.listchange) {
                     callback_map.listchange([peopleList]);
                     emit_mock_msg();

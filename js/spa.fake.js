@@ -13,7 +13,7 @@ spa.fake = (function () {
 
     peopleList = [
           {
-              name: 'Betty',
+              name: 'Johny',
               _id: 'id_01',
               css_map: {
                   top: 20,
@@ -22,7 +22,7 @@ spa.fake = (function () {
               }
           },
           {
-              name: 'Mike',
+              name: 'E',
               _id: 'id_02',
               css_map: {
                   top: 60,
@@ -31,7 +31,7 @@ spa.fake = (function () {
               }
           },
           {
-              name: 'Pebbles',
+              name: 'Mision',
               _id: 'id_03',
               css_map: {
                   top: 100,
@@ -40,7 +40,7 @@ spa.fake = (function () {
               }
           },
           {
-              name: 'Wilma',
+              name: 'Tikri',
               _id: 'id_04',
               css_map: {
                   top: 140,
@@ -119,7 +119,7 @@ spa.fake = (function () {
                 else {
                     emit_mock_msg();
                 }
-            }, 8000);
+            }, 4000);
         };
 
         send_listchange = function () {

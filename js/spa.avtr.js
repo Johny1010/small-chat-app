@@ -43,7 +43,7 @@ spa.avtr = (function () {
         css_map = {
             top: parseInt($target.css('top'), 10),
             left: parseInt($target.css('left'), 10),
-            'backgroud-color': $target.css('background-color')
+            'background-color': $target.css('background-color')
         };
         person_id = $target.attr('data-id');
 
@@ -100,7 +100,8 @@ spa.avtr = (function () {
         drag_map.left += event.px_delta_x;
 
         stateMap.$drag_target.css({
-            top: drag_map.top, left: drag_map.left
+            top: drag_map.top,
+            left: drag_map.left
         });
     };
 
@@ -167,10 +168,10 @@ spa.avtr = (function () {
             }
 
             $box = $('<div/>')
-                .addClass(class_list.join(''))
+                .addClass(class_list.join(' '))
                 .css(person.css_map)
                 .attr('data-id', String(person.id))
-                .peop('title', spa.util_b.encodeHtml(person.name))
+                .prop('title', spa.util_b.encodeHtml(person.name))
                 .text(person.name)
                 .appendTo($nav);
         });
@@ -193,7 +194,7 @@ spa.avtr = (function () {
         setJqueryMap($container);
 
         $.gevent.subscribe($container, 'spa-setchatee', onSetchatee);
-        $.gevent.subscribe($container, 'spa-listchane', onListchange);
+        $.gevent.subscribe($container, 'spa-listchange', onListchange);
         $.gevent.subscribe($container, 'spa-logout', onLogout);
 
         $container

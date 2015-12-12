@@ -1,7 +1,7 @@
 /**
  * Created by johny on 08.12.15.
  */
-spa.model = (function (){
+spa.model = (function () {
     'use strict';
     var configMap = {
         anon_id: 'a0'
@@ -14,7 +14,7 @@ spa.model = (function (){
             people_db: TAFFY (),
             user: null
         },
-        isFakeData = true,
+        isFakeData = false,
         personProto, makePerson, makeCid, clearPeopleDb, chat, completeLogin, removePerson, people, initModule;
 
     personProto = {
@@ -32,7 +32,7 @@ spa.model = (function (){
 
     clearPeopleDb = function () {
         var user = stateMap.user;
-        stateMap.people_db = TAFFY ();
+        stateMap.people_db = TAFFY();
         stateMap.people_cid_map = {};
         if (user) {
             stateMap.people_db.insert(user);

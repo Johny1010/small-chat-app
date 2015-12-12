@@ -1,46 +1,38 @@
 /**
  * Created by johny on 06.12.15.
  */
-/*jslint browser : true, continue : true,
- devel : true, indent : 2, maxerr : 50,
- newcap : true, nomen : true, plusplus : true,
- regexp : true, sloppy : true, vars : false,
- white : true
- */
-/*global $. spa */
-
-spa.shell = (function (){
+spa.shell = (function () {
     'use strict';
-   var configMap = {
-           anchor_schema_map: {
-               chat: {
-                   opened: true,
-                   closed: true
-               }
-           },
-           resize_interval: 200,
-           main_html : String()
-           + '<div class="spa-shell-head">'
-           + '<div class="spa-shell-head-logo">'
-           + '<h1>Chat App</h1>'
-           + '<p>Johny\'s chat app!</p>'
-           + '</div>'
-           + '<div class="spa-shell-head-acct"></div>'
-           + '</div>'
-           + '<div class="spa-shell-main">'
-           + '<div class="spa-shell-main-nav"></div>'
-           + '<div class="spa-shell-main-content"></div>'
-           + '</div>'
-           + '<div class="spa-shell-foot"></div>'
-           + '<div class="spa-shell-modal"></div>'
-       },
-       stateMap = {
-           anchor_map: {},
-           resize_idto: undefined
-       },
-       jqueryMap = {},
-       copyAnchorMap, setJqueryMap, toggleChat, anchor_map_previous, changeAnchorPart, onResize,
-       onHashchange, setChatAnchor, initModule, onTapAcct, onLogin, onLogout;
+    var configMap = {
+            anchor_schema_map: {
+                chat: {
+                    opened: true,
+                    closed: true
+                }
+            },
+            resize_interval: 200,
+            main_html : String()
+                + '<div class="spa-shell-head">'
+                    + '<div class="spa-shell-head-logo">'
+                        + '<h1>Chat App</h1>'
+                        + '<p>Johny\'s chat app!</p>'
+                    + '</div>'
+                    + '<div class="spa-shell-head-acct"></div>'
+                + '</div>'
+                + '<div class="spa-shell-main">'
+                    + '<div class="spa-shell-main-nav"></div>'
+                    + '<div class="spa-shell-main-content"></div>'
+                + '</div>'
+                + '<div class="spa-shell-foot"></div>'
+                + '<div class="spa-shell-modal"></div>'
+        },
+        stateMap = {
+            anchor_map: {},
+            resize_idto: undefined
+        },
+        jqueryMap = {},
+        copyAnchorMap, setJqueryMap, toggleChat, anchor_map_previous, changeAnchorPart, onResize,
+        onHashchange, setChatAnchor, initModule, onTapAcct, onLogin, onLogout;
 
     copyAnchorMap = function () {
       return $.extend(true, {}, stateMap.anchor_map);
@@ -48,12 +40,12 @@ spa.shell = (function (){
 
 
     setJqueryMap = function () {
-      var $container = stateMap.$container;
-        jqueryMap = {
-            $container : $container,
-            $acct: $container.find('.spa-shell-head-acct'),
-            $nav: $container.find('.spa-shell-mail-nav')
-        };
+        var $container = stateMap.$container;
+            jqueryMap = {
+                $container : $container,
+                $acct: $container.find('.spa-shell-head-acct'),
+                $nav: $container.find('.spa-shell-mail-nav')
+            };
     };
 
     changeAnchorPart = function (arg_map) {

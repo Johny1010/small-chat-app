@@ -4,16 +4,16 @@
 spa.chat = (function () {
     'use strict';
     var configMap = {
-        main_html: String ()
+        main_html: String()
         + '<div class="spa-chat">'
-            +'<div class="spa-chat-head">'
-                +'<div class="spa-chat-head-toggle">+</div>'
-                +'<div class="spa-chat-head-title">'
-                    +'Chat'
-                +'</div>'
-            +'</div>'
-            +'<div class="spa-chat-closer">x</div>'
-            +'<div class="spa-chat-sizer">'
+            + '<div class="spa-chat-head">'
+                + '<div class="spa-chat-head-toggle">+</div>'
+                + '<div class="spa-chat-head-title">'
+                    + 'Chat'
+                + '</div>'
+            + '</div>'
+            + '<div class="spa-chat-closer">x</div>'
+            + '<div class="spa-chat-sizer">'
                 + '<div class="spa-chat-list">'
                     + '<div class="spa-chat-list-box"></div>'
                 + '</div>'
@@ -28,9 +28,9 @@ spa.chat = (function () {
                             + '</div>'
                         + '</form>'
                     + '</div>'
-                +'</div>'
-            +'</div>'
-        +'</div>',
+                + '</div>'
+            + '</div>'
+        + '</div>',
         settable_map: {
             slider_open_time: true,
             slider_close_time: true,
@@ -38,7 +38,6 @@ spa.chat = (function () {
             slider_closed_em: true,
             slider_opened_title: true,
             slider_closed_title: true,
-
             chat_model: true,
             people_model: true,
             set_chat_anchor: true
@@ -57,7 +56,7 @@ spa.chat = (function () {
         chat_model: null,
         people_model: null,
         set_chat_anchor: null
-        },
+    },
         stateMap = {
             $append_target: null,
             position_type: 'closed',
@@ -126,42 +125,42 @@ spa.chat = (function () {
 
     setSliderPosition = function (position_type, callback) {
         var height_px, animate_time, slider_title, toggle_text;
-        
         if (position_type === 'opened' && configMap.people_model.get_user().get_is_anon()) {
             return false;
         }
 
-        if (stateMap.position_type === position_type){
+        if (stateMap.position_type === position_type) {
             if (position_type === 'opened') {
                 jqueryMap.$input.focus();
             }
             return true;
         }
 
-      switch (position_type) {
-          case 'opened':
-              height_px = stateMap.slider_opened_px;
-              animate_time = configMap.slider_open_time;
-              slider_title = configMap.slider_opened_title;
-              toggle_text = '=';
-              jqueryMap.$input.focus();
-          break;
+        switch (position_type) {
+            case 'opened':
+            height_px = stateMap.slider_opened_px;
+            animate_time = configMap.slider_open_time;
+            slider_title = configMap.slider_opened_title;
+            toggle_text = '=';
+            jqueryMap.$input.focus();
+            break;
 
-          case 'hidden':
-              height_px = 0;
-              animate_time = configMap.slider_open_time;
-              slider_title = '';
-              toggle_text = '+';
-          break;
+            case 'hidden':
+            height_px = 0;
+            animate_time = configMap.slider_open_time;
+            slider_title = '';
+            toggle_text = '+';
+            break;
 
-          case 'closed':
-              height_px = stateMap.slider_closed_px;
-              animate_time = configMap.slider_close_time;
-              slider_title = configMap.slider_closed_title;
-              toggle_text = '+';
-          break;
-          default : return false;
-      }
+            case 'closed':
+            height_px = stateMap.slider_closed_px;
+            animate_time = configMap.slider_close_time;
+            slider_title = configMap.slider_closed_title;
+            toggle_text = '+';
+            break;
+            default:
+            return false;
+        }
 
         stateMap.position_type = '';
         jqueryMap.$slider.animate(
@@ -172,7 +171,7 @@ spa.chat = (function () {
                 jqueryMap.$toggle.text(toggle_text);
                 stateMap.position_type = position_type;
                 if (callback) {
-                    callback (jqueryMap.$slider);
+                    callback(jqueryMap.$slider);
                 }
             }
         );
@@ -185,14 +184,14 @@ spa.chat = (function () {
             scrollTop: $msg_log.prop('scrollHeight') - $msg_log.height()
         }, 150);
     };
-    
+
     writeChat = function (person_name, text, is_user) {
         var msg_class = is_user ? 'spa-chat-msg-log-me' : 'spa-chat-msg-log-msg';
-        
         jqueryMap.$msg_log.append(
-            '<div class="' + msg_class +'">' 
-            + spa.util_b.encodeHtml(person_name) + ': '
-            + spa.util_b.encodeHtml(text) + '</div>'
+            '<div class="' + msg_class + '">'
+                + spa.util_b.encodeHtml(person_name) + ': '
+                + spa.util_b.encodeHtml(text)
+            + '</div>'
         );
         scrollChat();
     };
@@ -200,14 +199,14 @@ spa.chat = (function () {
     writeAlert = function (alert_text) {
         jqueryMap.$msg_log.append(
             '<div class="spa-chat-msg-log-alert">'
-            + spa.util_b.encodeHtml(alert_text)
+                + spa.util_b.encodeHtml(alert_text)
             + '</div>'
         );
         scrollChat();
     };
     
     clearChat = function () {
-        jqueryMap.$msg_log.empty();  
+        jqueryMap.$msg_log.empty();
     };
 
     onTapToggle = function (event) {
@@ -239,7 +238,7 @@ spa.chat = (function () {
     
     onTapList = function (event) {
         var $tapped = $(event.elem_target), chatee_id;
-        if (!$tapped.hasClass('spa-chat-list-name')){
+        if (!$tapped.hasClass('spa-chat-list-name')) {
             return false;
         }
         chatee_id = $tapped.attr('data-id');
@@ -253,7 +252,6 @@ spa.chat = (function () {
     onSetchatee = function (event, arg_map) {
         var new_chatee = arg_map.new_chatee,
             old_chatee = arg_map.old_chatee;
-        
         jqueryMap.$input.focus();
         if (!new_chatee) {
             if (old_chatee) {
@@ -272,8 +270,8 @@ spa.chat = (function () {
             .find('[data-id=' + arg_map.new_chatee.id + ']')
             .addClass('spa-x-select');
         
-        writeAlert('You are now talking with '+arg_map.new_chatee.name);
-        jqueryMap.$title.text('Chat with '+arg_map.new_chatee.name);
+        writeAlert('You are now talking with ' + arg_map.new_chatee.name);
+        jqueryMap.$title.text('Chat with ' + arg_map.new_chatee.name);
         return true;
     };
     
@@ -281,10 +279,8 @@ spa.chat = (function () {
         var list_html = String(),
             people_db = configMap.people_model.get_db(),
             chatee = configMap.chat_model.get_chatee();
-        
         people_db().each(function (person, idx) {
             var select_class = '';
-            
             if (person.get_is_anon() || person.get_is_user()) {
                 return true;
             }
@@ -294,15 +290,16 @@ spa.chat = (function () {
             }
             list_html
                 += '<div class="spa-chat-list-name'
-                + select_class +'" data-id="' + person.id + '">'
-                + spa.util_b.encodeHtml(person.name) + '</div>'
+                    + select_class + '" data-id="' + person.id + '">'
+                    + spa.util_b.encodeHtml(person.name)
+                + '</div>';
         });
         
         if (!list_html) {
             list_html = String()
                 + '<div class="spa-chat-list-note">'
-                + 'There is noone online...<br><br>'
-                + 'Go to hell' 
+                    + 'There is noone online...<br><br>'
+                    + 'Go to hell'
                 + '</div>';
             clearChat();
         }

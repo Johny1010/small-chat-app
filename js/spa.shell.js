@@ -40,7 +40,7 @@ spa.shell = (function (){
        },
        jqueryMap = {},
        copyAnchorMap, setJqueryMap, toggleChat, anchor_map_previous, changeAnchorPart, onResize,
-       onHashchange, setChatAnchor, onClickChat, initModule, onTapAcct, onLogin, onLogout;
+       onHashchange, setChatAnchor, initModule, onTapAcct, onLogin, onLogout;
 
     copyAnchorMap = function () {
       return $.extend(true, {}, stateMap.anchor_map);
@@ -220,13 +220,6 @@ spa.shell = (function (){
         return changeAnchorPart({
             chat: position_type
         });
-    };
-
-    onClickChat = function (event) {
-        changeAnchorPart({
-            chat: (stateMap.is_chat_retracted ? 'open' : 'closed')
-        });
-        return false;
     };
 
     initModule = function ($container) {

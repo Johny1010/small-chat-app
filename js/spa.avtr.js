@@ -1,7 +1,7 @@
 /**
  * Created by johny on 08.12.15.
  */
-spa.chat = (function () {
+spa.avtr = (function () {
     'use strict';
     var configMap = {
             chat_model: null,
